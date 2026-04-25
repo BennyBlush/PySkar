@@ -3,328 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Пушкарь Shop</title>
-    <style>
-        /* Основные стили и фон */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(180deg, #000000 0%, #4d2600 100%);
-            background-attachment: fixed;
-            color: white;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        header {
-            padding: 20px;
-            text-align: center;
-            width: 100%;
-        }
-
-        /* Сетка товаров */
-        .shop-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            width: 90%;
-            max-width: 1200px;
-            padding: 20px;
-        }
-
-        /* Карточка товара */
-        .product-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid transparent;
-            border-radius: 15px;
-            padding: 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-
-        /* Эффект при наведении/нажатии */
-        .product-card:hover, .product-card:active {
-            border-color: #ff8c00;
-            box-shadow: 0 0 15px rgba(255, 140, 0, 0.4);
-            transform: translateY(-5px);
-        }
-
-        .product-card img {
-            width: 100%;
-            max-width: 200px;
-            height: auto;
-            border-radius: 10px;
-            margin-bottom: 15px;
-        }
-
-        .product-card h3 {
-            margin: 10px 0;
-            font-size: 1.4em;
-        }
-
-        .product-card p {
-            font-size: 0.9em;
-            color: #ccc;
-            margin-bottom: 15px;
-            line-height: 1.4;
-        }
-
-        .product-price {
-            font-weight: bold;
-            font-size: 1.2em;
-            color: #ff8c00;
-            margin-bottom: 15px;
-        }
-
-        /* Кнопки */
-        button {
-            background-color: #ff8c00;
-            color: black;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.2s;
-            width: 100%;
-        }
-
-        button:hover {
-            background-color: #e67e00;
-        }
-
-        /* Корзина в углу */
-        .cart-icon {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #ff8c00;
-            padding: 15px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 100;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-
-        /* Всплывающее уведомление */
-        #notification {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #28a745;
-            color: white;
-            padding: 10px 25px;
-            border-radius: 30px;
-            display: none;
-            z-index: 1000;
-            animation: fadeInOut 1s;
-        }
-
-        @keyframes fadeInOut {
-            0% { opacity: 0; }
-            20% { opacity: 1; }
-            80% { opacity: 1; }
-            100% { opacity: 0; }
-        }
-
-        /* Модальное окно корзины */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
-            justify-content: center;
-            align-items: center;
-            z-index: 200;
-        }
-
-        .modal-content {
-            background: #1a1a1a;
-            padding: 30px;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-            border: 1px solid #ff8c00;
-        }
-
-        .tg-link {
-            display: block;
-            margin-top: 20px;
-            background: #0088cc;
-            color: white;
-            text-decoration: none;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: bold;
-        }
-    </style>
+    <title>Benny Shop</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div id="notification"></div>
 
     <header>
-        <h1>Пушкарь Shop</h1>
-        <p>Сигнальные патроны, пусковые устройства, электрошокеры, ножи, перцовые баллончики — для вашей безопасности. Большой выбор перцовых баллончиков (гелевые, аэрозольные, струйные) — уточняйте у продавца.</p>
+        <h1>BENNY NFT SHOP</h1>
     </header>
 
-    <div class="cart-icon" onclick="openCart()">
-        🛒 <span id="cart-count">0</span>
+    <div class="shop-container" id="product-grid">
+        <!-- Товары добавятся автоматически из script.js -->
     </div>
 
-    <!-- Контейнер для товаров -->
-    <div class="shop-container" id="product-grid">
-        <!-- Товары будут добавлены через JS -->
+    <!-- Плавающая кнопка корзины -->
+    <div class="cart-icon" onclick="openCart()">
+        🛒 <span id="cart-count">0</span>
     </div>
 
     <!-- Модальное окно корзины -->
     <div id="cartModal" class="modal">
         <div class="modal-content">
-            <h2>Ваша корзина</h2>
+            <h2>Корзина</h2>
             <div id="cart-items-list"></div>
-            <p id="total-price"></p>
-            <a href="#" id="tg-button" class="tg-link" target="_blank">Перейти в ТГ</a>
-            <button onclick="closeCart()" style="margin-top: 10px; background: #444; color: white;">Закрыть</button>
+            <a href="#" id="tg-link" class="tg-button" target="_blank">Перейти в ТГ</a>
+            <button class="close-btn" onclick="closeCart()">Закрыть</button>
         </div>
     </div>
 
-    <script>
-        // БАЗА ДАННЫХ ТОВАРОВ
-        const products = [
-            {
-                id: 1,
-                name: "Сигнал охотника (пачка)",
-                description: "15 сигнальных патронов. Яркая вспышка (1 млн кд) и мощный хлопок (120 дБ). Высота подъема до 50 м.",
-                price: 1500,
-                img: "img/signal.jpg" // Замени на свою ссылку
-            },
-            {
-                id: 2,
-                name: "Гром (пачка)",
-                description: "15 звуковых патронов. Звук до 160 дБ, искры и вспышка до 2.5 м. Для защиты от животных.",
-                price: 1300,
-                img: "img/grom.jpg"
-            },
-            {
-                id: 3,
-                name: "Сигнал охотника (1 шт)",
-                description: "Одиночный резьбовой патрон. Время горения 3-5 сек, высота сигнала до 40 м.",
-                price: 150,
-                img: "img/signal.jpg"
-            },
-            {
-                id: 4,
-                name: "Гром (1 штука)",
-                description: "Одиночный звуковой патрон. Громкий хлопок, искры до 30 см. Эффективно отпугивает.",
-                price: 130,
-                img: "img/grom.jpg"
-            },
-            {
-                id: 5,
-                name: "ПУ-1",
-                description: "Одноствольное пусковое устройство из пластика. Компактное, легкое.",
-                price: 300,
-                img: "img/pu1.jpg"
-            },
-            {
-                id: 6,
-                name: "ПУ-2",
-                description: "Спаренное пусковое устройство. Два патрона в обойме. Удобно для быстрого повторного выстрела.",
-                price: 600,
-                img: "img/pu2.jpg"
-            },
-            {
-                id: 7,
-                name: "ПУ-3",
-                description: "Трехзарядный сигнальный пистолет. Имеется предохранитель.",
-                price: 2000,
-                img: "img/pu3.jpg"
-            },
-        ];
-
-        let cart = [];
-
-        // Функция отрисовки товаров
-        function renderProducts() {
-            const grid = document.getEl
-ementById('product-grid');
-            grid.innerHTML = '';
-            
-            products.forEach(product => {
-                grid.innerHTML += `
-                    <div class="product-card">
-                        <img src="${product.image}" alt="${product.name}">
-                        <h3>${product.name}</h3>
-                        <p>${product.description}</p>
-                        <div class="product-price">${product.price} руб.</div>
-                        <button onclick="addToCart(${product.id})">В корзину</button>
-                    </div>
-                `;
-            });
-        }
-
-        // Добавление в корзину
-        function addToCart(id) {
-            const product = products.find(p => p.id === id);
-            cart.push(product);
-            
-            // Обновление счетчика
-            document.getElementById('cart-count').innerText = cart.length;
-
-            // Показ уведомления
-            const note = document.getElementById('notification');
-            note.innerText = `"${product.name}" добавлен в корзину`;
-            note.style.display = 'block';
-            
-            setTimeout(() => {
-                note.style.display = 'none';
-            }, 1000);
-        }
-
-        // Управление модальным окном
-        function openCart() {
-            const modal = document.getElementById('cartModal');
-            const list = document.getElementById('cart-items-list');
-            const tgBtn = document.getElementById('tg-button');
-            
-            if (cart.length === 0) {
-                list.innerHTML = "Корзина пуста";
-                tgBtn.style.display = "none";
-            } else {
-                const names = cart.map(item => item.name).join(', ');
-                list.innerHTML = "Выбрано товаров: " + cart.length + "<br>(" + names + ")";
-                tgBtn.style.display = "block";
-                
-                // Формируем ссылку для ТГ
-                const message = `Здравствуйте! Хочу купить: ${names}`;
-                tgBtn.href = `https://t.me/Benny_NFT?text=${encodeURIComponent(message)}`;
-            }
-            
-            modal.style.display = 'flex';
-        }
-
-        function closeCart() {
-            document.getElementById('cartModal').style.display = 'none';
-        }
-
-        // Закрытие модалки при клике вне её
-        window.onclick = function(event) {
-            const modal = document.getElementById('cartModal');
-            if (event.target == modal) modal.style.display = "none";
-        }
-
-        // Инициализация
-        renderProducts();
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
