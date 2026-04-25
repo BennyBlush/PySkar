@@ -1,0 +1,171 @@
+/* Основной фон и общие настройки */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(180deg, #000000 0%, #462300 100%);
+    background-attachment: fixed;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+header {
+    margin-top: 40px;
+    text-align: center;
+}
+
+/* Сетка товаров */
+.shop-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    width: 90%;
+    max-width: 1200px;
+    padding: 40px 0;
+}
+
+/* Карточка товара */
+.product-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid transparent;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center; /* Текст по центру */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: 0.3s ease;
+}
+
+/* Эффект при наведении на ПК и нажатии на телефоне */
+@media (hover: hover) {
+    .product-card:hover {
+        border-color: #ff8c00;
+        box-shadow: 0 0 20px rgba(255, 140, 0, 0.5);
+        transform: translateY(-5px);
+    }
+}
+.product-card:active {
+    border-color: #ff8c00;
+}
+
+.product-card img {
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+.product-card h3 {
+    margin: 10px 0;
+    font-size: 1.5rem;
+}
+
+.product-card p {
+    color: #ccc;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.price {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #ff8c00;
+    margin-bottom: 15px;
+}
+
+.add-btn {
+    background: #ff8c00;
+    color: black;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* Уведомление */
+#notification {
+    position: fixed;
+    top: 20px;
+    background: #ff8c00;
+    color: black;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-weight: bold;
+    display: none;
+    z-index: 9999;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+/* Корзина */
+.cart-icon {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #ff8c00;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.6);
+}
+
+#cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: white;
+    color: black;
+    font-size: 12px;
+    padding: 3px 7px;
+    border-radius: 50%;
+}
+
+/* Модальное окно */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #1a1a1a;
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid #ff8c00;
+    width: 85%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.tg-button {
+    display: none;
+    background: #0088cc;
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #777;
+    margin-top: 15px;
+    cursor: pointer;
+}
