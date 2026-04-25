@@ -8,31 +8,39 @@
 </head>
 <body>
 
+    <!-- Всплывающее уведомление -->
     <div id="notification"></div>
 
     <header>
-        <h1>Сигнальные патроны, пусковые устройства, электрошокеры, ножи, перцовые баллончики — для вашей безопасности. Большой выбор перцовых баллончиков (гелевые, аэрозольные, струйные) — уточняйте у продавца.</h1>
+        <div class="shop-info">
+            <h1>Пушкарь Shop</h1>
+            <p class="shop-tagline">Самооборона</p>
+            <p class="shop-about">
+                Сигнальные патроны, пусковые устройства, электрошокеры, ножи, перцовые баллончики — для вашей безопасности. Большой выбор перцовых баллончиков (гелевые, аэрозольные, струйные) — уточняйте у продавца.
+            </p>
+        </div>
     </header>
 
-    <div class="shop-container" id="product-grid">
-        <!-- Товары добавятся автоматически из script.js -->
-    </div>
+    <main class="shop-container" id="product-grid">
+        <!-- Товары грузятся из script.js -->
+    </main>
 
-    <!-- Плавающая кнопка корзины -->
+    <!-- Иконка корзины -->
     <div class="cart-icon" onclick="openCart()">
         🛒 <span id="cart-count">0</span>
     </div>
 
-    <!-- Модальное окно корзины -->
+    <!-- Окно корзины -->
     <div id="cartModal" class="modal">
         <div class="modal-content">
-            <h2>Корзина</h2>
-            <div id="cart-items-list"></div>
-            <a href="#" id="tg-link" class="tg-button" target="_blank">Перейти в ТГ</a>
-            <button class="close-btn" onclick="closeCart()">Закрыть</button>
+            <h2>Ваш заказ</h2>
+            <div id="cart-items-list">Корзина пуста</div>
+            <a href="#" id="tg-link" class="tg-button" target="_blank">Написать в Telegram</a>
+            <button class="close-btn" onclick="closeCart()">Вернуться к покупкам</button>
         </div>
     </div>
 
     <script src="script.js"></script>
 </body>
 </html>
+
